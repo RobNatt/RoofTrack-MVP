@@ -1,78 +1,113 @@
 'use client';
-
-import React, { useState } from 'react';
-import Link from 'next/link';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
-export default function LoginPage() {
+// Separate component for the form (uses useSearchParams)
+function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const redirectTo = searchParams.get('redirect') ?? '/dashboard';
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setError('');
 
         try {
             const supabase = createClient();
-            const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
 
-            if (authError) throw authError;
+            if (error) throw error;
+
+            // Check for redirect parameter
+            const redirectTo = searchParams.get('redirectTo') || '/dashboard';
             router.push(redirectTo);
-            router.refresh();
-        } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : 'An error occurred during login');
-            console.error('Login error:', err);
+        } catch (err: any) {
+            alert('Login failed: ' + err.message);
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen py-2">
-            <div className="p-6 bg-gray-100 rounded-2xl shadow-2xl">
-                <h1 className="text-4xl font-bold mb-8">Login</h1>
-                <form onSubmit={handleLogin} className="text-lg gap-4 space-y-4">
-                    {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
-                    <div>
-                        <label className="block">Email</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="p-3 border rounded-lg w-full"
-                            required
-                        />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+                <div>
+                    <h2 className="text-center text-3xl font-bold text-gray-900">
+                        Sign in to RoofStack
+                    </h2>
+                </div>
+                <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+                    <div className="space-y-4">
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                Email address
+                            </label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                Password
+                            </label>
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            />
+                        </div>
                     </div>
+
                     <div>
-                        <label className="block">Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="p-3 border rounded-lg w-full"
-                            required
-                        />
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                        >
+                            {loading ? 'Signing in...' : 'Sign in'}
+                        </button>
                     </div>
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="block mt-4 p-3 px-6 rounded-3xl shadow-xl border-blue-900 bg-indigo-900 text-yellow-300 font-bold border-2 hover:scale-105 hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:pointer-events-none"
-                    >
-                        {loading ? 'Signing in…' : 'Login'}
-                    </button>
+
+                    <div className="text-center">
+                        <button
+                            type="button"
+                            onClick={() => router.push('/signup')}
+                            className="text-indigo-600 hover:text-indigo-500"
+                        >
+                            Don't have an account? Sign up
+                        </button>
+                    </div>
                 </form>
-                <p className="mt-4 text-sm text-gray-600">
-                    Don&apos;t have an account? <Link href="/signup" className="text-indigo-900 font-medium">Sign up</Link>
-                </p>
             </div>
-        </main>
+        </div>
+    );
+}
+
+// Main page component with Suspense wrapper
+export default function LoginPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <p>Loading...</p>
+            </div>
+        }>
+            <LoginForm />
+        </Suspense>
     );
 }
