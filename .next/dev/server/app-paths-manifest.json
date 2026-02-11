@@ -1,0 +1,7 @@
+{
+  "/dashboard/leads/page": "app/dashboard/leads/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/territoryManagement/page": "app/dashboard/territoryManagement/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js"
+}
