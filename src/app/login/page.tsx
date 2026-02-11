@@ -2,16 +2,17 @@
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import type { FormEvent, ChangeEvent } from 'react';
 
 // Separate component for the form (uses useSearchParams)
-function LoginForm() {
+function LoginFormContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
 
@@ -27,8 +28,9 @@ function LoginForm() {
             // Check for redirect parameter
             const redirectTo = searchParams.get('redirectTo') || '/dashboard';
             router.push(redirectTo);
-        } catch (err: any) {
-            alert('Login failed: ' + err.message);
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+            alert('Login failed: ' + errorMessage);
         } finally {
             setLoading(false);
         }
@@ -54,7 +56,7 @@ function LoginForm() {
                                 type="email"
                                 required
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             />
                         </div>
@@ -68,7 +70,7 @@ function LoginForm() {
                                 type="password"
                                 required
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             />
                         </div>
@@ -90,7 +92,7 @@ function LoginForm() {
                             onClick={() => router.push('/signup')}
                             className="text-indigo-600 hover:text-indigo-500"
                         >
-                            Don't have an account? Sign up
+                            Don&apos;t have an account? Sign up
                         </button>
                     </div>
                 </form>
@@ -104,10 +106,10 @@ export default function LoginPage() {
     return (
         <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <p>Loading...</p>
+                <div className="text-gray-500">Loading...</div>
             </div>
         }>
-            <LoginForm />
+            <LoginFormContent />
         </Suspense>
     );
 }
