@@ -15,7 +15,7 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-6 mt-10 flex-wrap">
                 <div className="p-6 bg-indigo-700 rounded-2xl shadow-2xl hover:bg-indigo-500 hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <h4 className="text-xl font-bold text-yellow-50 mb-4">Knock Management</h4>
-                  <p className="text-yellow-300">Efficiently manage and track roof knock-ins with our dedicated management system.</p>
+                  <p className="text-yellow-300">Efficiently manage and track roof Door-Knocks with our interactive map systems.</p>
                 </div>
                 <div className="p-6 bg-indigo-700 rounded-2xl shadow-2xl hover:bg-indigo-500 hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <h4 className="text-xl text-yellow-50 font-bold mb-4">Lead Management</h4>
@@ -31,16 +31,16 @@ export default function Home() {
               <h3 className="px-5 text-4xl text-indigo-900 text-opacity-30 font-serif uppercase text-center mb-12 mt-20">Prospect Features (coming soon)</h3>
               <div className="grid grid-cols-3 gap-6 mt-10 flex-wrap">
                 <div className="p-6 bg-gray-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-indigo-900 mb-4">Knock Management</h4>
-                  <p className="text-indigo-800">Efficiently manage and track roof knock-ins with our dedicated management system.</p>
+                  <h4 className="text-xl font-bold text-indigo-900 mb-4">Track Insurance Claims</h4>
+                  <p className="text-indigo-800">Monitor and manage insurance claims for your roofing projects efficiently.</p>
                 </div>
                 <div className="p-6 bg-gray-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl text-indigo-900 font-bold mb-4">Lead Management</h4>
-                  <p className="text-indigo-800">Easily track and manage your roofing leads with our intuitive lead management system.</p>
+                  <h4 className="text-xl text-indigo-900 font-bold mb-4">Track Retail Sales</h4>
+                  <p className="text-indigo-800">Easily track and quote your roofing retail sales with our intuitive system.</p>
                 </div>
                 <div className="p-6 bg-gray-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-indigo-900 mb-4">Inspection Scheduling</h4>
-                  <p className="text-indigo-800">Schedule and organize roof inspections seamlessly within the platform.</p>
+                  <h4 className="text-xl font-bold text-indigo-900 mb-4">Communicate Interdepartmentally</h4>
+                  <p className="text-indigo-800">Easily communicate and collaborate across departments within the platform.</p>
                 </div>
               </div>
             </div>
@@ -48,33 +48,33 @@ export default function Home() {
               <h3 className="px-5 text-4xl text-gray-900 text-opacity-30 font-serif uppercase text-center mb-12 mt-20">Build Features(coming soon)</h3>
               <div className="grid grid-cols-3 gap-6 mt-10 flex-wrap">
                 <div className="p-6 bg-amber-300 rounded-2xl shadow-2xl hover:bg-amber-400 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-gray-700 mb-4">Knock Management</h4>
-                  <p className="text-gray-600">Efficiently manage and track roof knock-ins with our dedicated management system.</p>
+                  <h4 className="text-xl font-bold text-gray-700 mb-4">Track Product Shipping</h4>
+                  <p className="text-gray-600">Know when products are shipped and track their delivery status within the platform.</p>
                 </div>
                 <div className="p-6 bg-amber-300 rounded-2xl shadow-2xl hover:bg-amber-400 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl text-gray-700 font-bold mb-4">Lead Management</h4>
-                  <p className="text-gray-600">Easily track and manage your roofing leads with our intuitive lead management system.</p>
+                  <h4 className="text-xl text-gray-700 font-bold mb-4">Supplement missing line items</h4>
+                  <p className="text-gray-600">Easily supplement missing line items in your roofing invoices with our intuitive system.</p>
                 </div>
                 <div className="p-6 bg-amber-300 rounded-2xl shadow-2xl hover:bg-amber-400 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-gray-700 mb-4">Inspection Scheduling</h4>
-                  <p className="text-gray-600">Schedule and organize roof inspections seamlessly within the platform.</p>
+                  <h4 className="text-xl font-bold text-gray-700 mb-4">Confirm Quality Control</h4>
+                  <p className="text-gray-600">Track the build quality of your roofing projects and confirm quality control checkpoints.</p>
                 </div>
               </div>
             </div>
             <div className=" mt-20 p-10">
-              <h3 className="px-5 text-4xl text-yellow-800 text-opacity-30 font-serif uppercase text-center mb-12 mt-20">Invoice Features</h3>
+              <h3 className="px-5 text-4xl text-yellow-800 text-opacity-30 font-serif uppercase text-center mb-12 mt-20">Invoice Features(coming soon)</h3>
               <div className="grid grid-cols-3 gap-6 mt-10 flex-wrap">
                 <div className="p-6 bg-amber-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Knock Management</h4>
-                  <p className="text-gray-600">Efficiently manage and track roof knock-ins with our dedicated management system.</p>
+                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Confirm the receipt of documents</h4>
+                  <p className="text-gray-600">Verify that documents have been received and acknowledged by clients within the platform.</p>
                 </div>
                 <div className="p-6 bg-amber-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Lead Management</h4>
-                  <p className="text-gray-600">Easily track and manage your roofing leads with our intuitive lead management system.</p>
+                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Send a quick invoice</h4>
+                  <p className="text-gray-600">Easily send quick invoices to clients with our intuitive invoice system.</p>
                 </div>
                 <div className="p-6 bg-amber-200 rounded-2xl shadow-2xl hover:bg-gray-200 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Inspection Scheduling</h4>
-                  <p className="text-gray-600">Schedule and organize roof inspections seamlessly within the platform.</p>
+                  <h4 className="text-xl font-bold text-indigo-800 mb-4">Easily bill customers</h4>
+                  <p className="text-gray-600">Send an invoice to customers with our easy-to-use billing system.</p>
                 </div>
               </div>
             </div>
