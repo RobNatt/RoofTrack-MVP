@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from 'next/font/google';
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ 
@@ -18,7 +19,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "RoofStack - Territory Management",
+  title: "RoofTrack - Territory Management",
   description: "Roofing sales territory and lead management",
 };
 
@@ -29,9 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable} antialiased`} style={{ fontFamily: 'var(--font-inter)' }}>
+      <body className={`${inter.variable} ${montserrat.variable} antialiased min-h-screen`} style={{ fontFamily: 'var(--font-inter)' }}>
         <Header />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
         <Toaster 
           position="top-right"
           toastOptions={{
